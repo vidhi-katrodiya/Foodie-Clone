@@ -1,0 +1,16 @@
+[14-Aug-2023 11:51:58 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/vendor/cartalyst/sentinel/src/Laravel/SentinelServiceProvider.php on line 209
+[14-Aug-2023 11:52:17 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Models/Order.php on line 64
+[14-Aug-2023 11:52:17 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Models/Order.php on line 64
+[14-Aug-2023 11:52:20 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Http/Controllers/OrderController.php on line 654
+[14-Aug-2023 11:52:20 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Http/Controllers/OrderController.php on line 654
+[14-Aug-2023 11:52:20 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Models/Notifyuser.php on line 101
+[14-Aug-2023 11:52:20 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Models/Notifyuser.php on line 101
+[14-Aug-2023 11:54:24 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Http/Controllers/DeliveryController.php on line 595
+[14-Aug-2023 11:54:24 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Http/Controllers/DeliveryController.php on line 595
+[14-Aug-2023 11:54:56 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Http/Controllers/PaymentController.php on line 383
+[14-Aug-2023 11:54:56 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Http/Controllers/PaymentController.php on line 383
+[14-Aug-2023 12:01:10 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Http/Controllers/SettingController.php on line 500
+[14-Aug-2023 12:01:10 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Http/Controllers/SettingController.php on line 500
+[14-Aug-2023 12:01:10 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Http/Controllers/SettingController.php on line 501
+[14-Aug-2023 12:13:35 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Http/Controllers/API/ApiController.php on line 1740
+[14-Aug-2023 12:13:35 UTC] PHP Deprecated:  Using ${var} in strings is deprecated, use {$var} instead in /home2/freakd1c/public_html/customise/foodieclone/app/Http/Controllers/API/ApiController.php on line 1740

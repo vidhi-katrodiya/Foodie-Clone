@@ -1,0 +1,106 @@
+
+************ Paystack ***********
+
+paystack secrect key :- sk_test_9cbedbee8209f32549fa0e0baa6c370f4448ec77
+paystack public key :- pk_test_df2b9365362d49d068da21ccceed77e4889cc7ba
+
+**route**
+
+Route::any('paystack-payment',"PaymentController@show_paystack_payment")->name("paystack-payment");
+Route::any('paystackcallback',"PaymentController@paystackcallback")->name("paystackcallback");
+
+
+    public function show_paystack_payment(Request $request){     
+        $data=Order::find($request->get("id"));
+
+        $amount = $data->total;
+         
+       
+        $curl = curl_init();
+          $email = 'admin@gmail.com';
+         // $amount = (int)$data->consultation_fees; 
+          $callback_url = route('paystackcallback');
+          curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.paystack.co/transaction/initialize",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode([
+              'amount'=>$amount,
+              'email'=>$email,
+              'callback_url' => $callback_url
+            ]),
+            CURLOPT_HTTPHEADER => [
+              "authorization: Bearer ".// paystack secreat key //."", 
+              "content-type: application/json",
+              "cache-control: no-cache"
+            ],
+          ));
+          $response = curl_exec($curl);
+          $err = curl_error($curl);
+          if($err){
+            die('Curl returned error: ' . $err);
+          }
+            $tranx = json_decode($response, true);   
+            
+            if($tranx['data']['reference']){
+                $data->shipping_method=$request->get("shipping_method");
+
+                $data->payment_method=$request->get("payment_method");
+                $data->user_address_id=$request->get("user_address_id");
+                $data->delivery_time=$request->get("delivery_time");
+                $data->delivery_date=$request->get("delivery_date");
+                $data->is_completed = '0';
+                $data->notes = $request->get("notes");
+                $data->payment_method="5";           
+                $data->charges_id=$tranx['data']['reference'];
+                $data->save();  
+                }else{
+                die('something getting worng');
+            }
+           
+             if(!$tranx['status']){
+               print_r('API returned error: ' . $tranx['message']);
+             }
+             return Redirect($tranx['data']['authorization_url']);
+    }
+
+
+    public function paystackcallback(Request $request){      
+       $payment_model = PaymentMethod::find(5);
+       $curl = curl_init();
+        $reference = $request->get("reference");
+        if(!$reference){
+          die('No reference supplied');
+        }
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "https://api.paystack.co/transaction/verify/" . rawurlencode($reference),
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_HTTPHEADER => [
+            "accept: application/json",
+            "authorization: Bearer ".$payment_model->payment_secret."", 
+            "cache-control: no-cache"
+          ],
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        if($err){
+         return redirect()->route('payment-failed');
+        }
+        $tranx = json_decode($response);
+        if(!$tranx->status){
+         return redirect()->route('payment-failed');
+        }
+        if('success' == $tranx->data->status){
+            $data = Order::where("charges_id",$reference)->first();
+            
+            $data->is_completed='1';
+            $data->save();
+            return redirect()->route('payment-success');
+        }else{ //fail
+            return redirect()->route('payment-failed');
+        }
+    }
+
+
+
+
